@@ -16,12 +16,18 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Logo from "./Logo";
 import MyCarousel from "./MyCarousel";
 import Products from "./Products";
-
+import HomeIcon from "@mui/icons-material/Home";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import AddBusinessIcon from "@mui/icons-material/AddBusiness";
+import BusinessIcon from "@mui/icons-material/Business";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import PhoneIcon from "@mui/icons-material/Phone";
+import SearchComponent from "./SearchComponent";
 function Menu() {
   const drawerWidth = 240;
 
@@ -36,7 +42,7 @@ function Menu() {
       marginLeft: `-${drawerWidth}px`,
       ...(open && {
         transition: theme.transitions.create("margin", {
-          easing: theme.transitions.easing.easeOut,
+          easing: theme.transitions.easing.easeInOut,
           duration: theme.transitions.duration.enteringScreen,
         }),
         marginLeft: 0,
@@ -122,27 +128,26 @@ function Menu() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {[
+            { text: "Home Page", icon: <HomeIcon /> },
+            { text: "Products", icon: <InventoryIcon /> },
+            { text: "Articles", icon: <NewspaperIcon /> },
+            { text: "Branches", icon: <StorefrontIcon /> },
+            { text: "Sales Representatives", icon: <BusinessIcon /> },
+            { text: "Representation", icon: <AddBusinessIcon /> },
+            { text: "Support", icon: <SupportAgentIcon /> },
+            { text: "Contact Us", icon: <PhoneIcon /> },
+            { text: "Search", component: <SearchComponent /> },
+          ].map((item, index) => (
+            <ListItem key={item.text} disablePadding>
+              {item.component ? (
+                item.component
+              ) : (
+                <ListItemButton>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              )}
             </ListItem>
           ))}
         </List>

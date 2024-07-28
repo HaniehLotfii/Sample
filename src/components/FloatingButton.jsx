@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import styles from "./FloatingButton.module.css";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 
 export default function FloatingButtons() {
   const handleNavigateClick = () => {
@@ -22,11 +23,10 @@ export default function FloatingButtons() {
       }}
     >
       <Fab color="info" aria-label="edit">
-        <EditIcon />
+        <LiveHelpIcon />
       </Fab>
       <Fab variant="extended" onClick={handleNavigateClick}>
         <NavigationIcon sx={{ mr: 1 }} />
-        Navigate
       </Fab>
     </Box>
   );
